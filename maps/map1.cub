@@ -1,0 +1,7 @@
+NO ./archivo.png
+SO ./archivo2.png
+WE ./archivo3.png
+EA ./archivo4.png
+
+F 220,100,0
+C 225,100,0
