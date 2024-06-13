@@ -6,7 +6,7 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 15:07:53 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/10 17:27:59 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:12:45 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static int	get_texture(t_map *map, char *line)
 	return (0);
 }
 
-static int	check_line(t_map *map, char *line)
+static int	check_element(t_map *map, char *line)
 {
 	int	i;
 
@@ -132,7 +132,7 @@ void	parse_elements(t_map *map, int fd)
 	}
 	while (line && map->count < 6)
 	{
-		if (check_line(map, line) < 0)
+		if (check_element(map, line) < 0)
 			parsing_error(map, NULL);
 		line = get_next_line(fd);
 	}

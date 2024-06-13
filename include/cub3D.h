@@ -6,7 +6,7 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:16:04 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/11 11:38:24 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:27:16 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct s_ray
 */
 typedef struct s_map
 {
-	char	**map;
+	char	**map2d;
 	int		w_map;
 	int		h_map;
 	int		plyr_x;
@@ -122,12 +122,13 @@ typedef struct s_mlx
 
 void	parse_elements(t_map *map, int fd);
 void	parse_map(t_map *map, char *line, int fd);
-
+void	check_map(t_map *map);
 // utils //
 
+int	isplayer(char c);
 int		is_element(char *line);
 char	*ft_join(char *s1, char *s2);
-
+void	print_matrix(char **matrix);
 // errors //
 
 void	ft_error(char *err_message);

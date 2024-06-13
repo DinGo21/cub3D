@@ -34,11 +34,16 @@ $(NAME): $(OBJ) $(LIBFT) $(MLX)
 $(LIBFT):
 	@make -C libft all
 
+$(MLX):
+	@cd MLX42 && cmake -B build && cd ..
+	@make -C MLX42/build
+
 obj:
 	mkdir -p $(OBJ_DIR)
 
 clean:
 	@make -C libft clean
+	@make -C MLX42/build clean
 	@$(RM) $(OBJ_DIR)
 
 fclean: clean

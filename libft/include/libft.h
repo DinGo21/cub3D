@@ -6,7 +6,7 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 19:10:53 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/11 10:51:37 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:16:20 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		ft_isdigit(int c);
 
 /*Checks if a character is alphanumeric.*/
 int		ft_isalnum(int c);
-
 /*Checks if a character is ASCII.*/
 int		ft_isascii(int c);
 

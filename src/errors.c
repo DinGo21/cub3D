@@ -6,7 +6,7 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:25:01 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/10 13:21:17 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/13 16:02:26 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	free_matrix(char **matrix)
 {
 	int	i;
 	
-	i = 0;
 	if (matrix != NULL)
 	{
+		i = 0;
 		while (matrix[i] != NULL)
 		{
 			free(matrix[i++]);
@@ -44,17 +44,25 @@ void	ft_error(char *err_message)
 
 void	parsing_error(t_map *map, char *err_message)
 {
-	free_matrix(map->map);
+	free_matrix(map->map2d);
 	free_matrix(map->ff);
 	free_matrix(map->cc);
 	if (map->txtr[0] != NULL)
+	{
 		free(map->txtr[0]);
+	}
 	if (map->txtr[1] != NULL)
+	{
 		free(map->txtr[1]);
+	}
 	if (map->txtr[2] != NULL)
+	{
 		free(map->txtr[2]);
+	}
 	if (map->txtr[3] != NULL)
+	{
 		free(map->txtr[3]);
+	}
 	ft_error(err_message);
 	exit(EXIT_FAILURE);
 }
