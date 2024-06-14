@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse2.c                                           :+:      :+:    :+:   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:57:01 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/13 15:22:44 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/14 11:27:17 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,52 +51,35 @@ static void	get_mapsize(char **map2d, int *height, int *width)
 			x++;
 		}
 		if (x > *width)
+		{
 			*width = x;
+		}
 		y++;
 	}
 	*height = y;
-}
-
-static char	*skip_empty_lines(t_map *map, char *line, int fd)
-{
-	int	i;
-
-	while (line)
-	{
-		i = 0;
-		while (line[i] == ' ')
-			i++;
-		if (line[i] != '\n' && line[i] != '\0')
-			return (line);
-		if (line[i] == '\0')
-		{
-			free(line);
-			parsing_error(map, "unexpected EOF");
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (NULL);
 }
 
 void	parse_map(t_map *map, char *line, int fd)
 {
 	char *tmp;
 
-	line = skip_empty_lines(map, line, fd);
 	tmp = ft_strdup("");
 	while (line)
 	{
 		tmp = ft_join(tmp, line);
 		free(line);
 		if (!tmp)
+		{
 			parsing_error(map, strerror(errno));
+		}
 		line = get_next_line(fd);
 	}
 	map->map2d = ft_split(tmp, '\n');
 	free(tmp);
 	if (!map->map2d)
+	{
 		parsing_error(map, strerror(errno));
+	}
 	get_mapsize(map->map2d, &map->h_map, &map->w_map);
 	fill_map(map);
 	print_matrix(map->map2d);

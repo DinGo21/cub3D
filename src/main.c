@@ -6,29 +6,31 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:04:09 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/11 14:04:23 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:54:38 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	init_map(t_map *map)
+static void	init_data(t_mlx *data)
 {
-	map->w_map = 0;
-	map->h_map = 0;
-	map->plyr_x = 0;
-	map->plyr_y = 0;
-	map->count = 0;
-	map->map2d = NULL;
-	map->cc = NULL;
-	map->ff = NULL;
-	map->txtr[0] = NULL;
-	map->txtr[1] = NULL;
-	map->txtr[2] = NULL;
-	map->txtr[3] = NULL;
+	data->mlx = NULL;
+	data->img = NULL;
+	data->map.w_map = 0;
+	data->map.h_map = 0;
+	data->map.plyr_x = 0;
+	data->map.plyr_y = 0;
+	data->map.count = 0;
+	data->map.map2d = NULL;
+	data->map.cc = NULL;
+	data->map.ff = NULL;
+	data->map.txtr[0] = NULL;
+	data->map.txtr[1] = NULL;
+	data->map.txtr[2] = NULL;
+	data->map.txtr[3] = NULL;
 }
 
-void	init_data(t_mlx *data, char *filename)
+static void	start_game(t_mlx *data, char *filename)
 {
 	int		fd;
 
@@ -38,7 +40,7 @@ void	init_data(t_mlx *data, char *filename)
 		ft_error(strerror(errno));
 		exit(EXIT_FAILURE);
 	}
-	init_map(&data->map);
+	init_data(data);
 	parse_elements(&data->map, fd);
 	close(fd);
 	parsing_error(&data->map, NULL);
@@ -58,6 +60,6 @@ int	main(int argc, char *argv[])
 		ft_error("Filetype is not .cub");
 		exit(EXIT_FAILURE);
 	}
-	init_data(&data, argv[1]);
+	start_game(&data, argv[1]);
 	return (EXIT_SUCCESS);
 }
