@@ -6,26 +6,11 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:25:01 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/13 16:02:26 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/17 16:06:01 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-void	free_matrix(char **matrix)
-{
-	int	i;
-	
-	if (matrix != NULL)
-	{
-		i = 0;
-		while (matrix[i] != NULL)
-		{
-			free(matrix[i++]);
-		}
-		free(matrix);
-	}
-}
 
 void	ft_error(char *err_message)
 {
@@ -41,28 +26,17 @@ void	ft_error(char *err_message)
 	(void)nb;
 }
 
-
 void	parsing_error(t_map *map, char *err_message)
 {
-	free_matrix(map->map2d);
-	free_matrix(map->ff);
-	free_matrix(map->cc);
-	if (map->txtr[0] != NULL)
-	{
-		free(map->txtr[0]);
-	}
-	if (map->txtr[1] != NULL)
-	{
-		free(map->txtr[1]);
-	}
-	if (map->txtr[2] != NULL)
-	{
-		free(map->txtr[2]);
-	}
-	if (map->txtr[3] != NULL)
-	{
-		free(map->txtr[3]);
-	}
+	free_map(map);
+	ft_error(err_message);
+	exit(EXIT_FAILURE);
+}
+
+void	mlx_error(t_mlx *data, char *err_message)
+{
+	free_mlx(data);
+	free_map(&data->map);
 	ft_error(err_message);
 	exit(EXIT_FAILURE);
 }

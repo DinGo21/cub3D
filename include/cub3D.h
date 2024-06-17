@@ -6,7 +6,7 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:16:04 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/13 14:27:16 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/17 15:02:10 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "../libft/include/get_next_line.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 
+# define M_PI 3.14159265358979323846
 # define S_WIDTH 1900 // Screen width
 # define S_HEIGHT 1000 // Screen height
 # define TILE_SIZE 30 // Tile size
@@ -112,7 +113,7 @@ typedef struct s_mlx
 {
 	mlx_t			*mlx;
 	mlx_image_t		*img;
-	mlx_texture_t	textures[4];
+	mlx_texture_t	*textures[4];
 	t_map			map;
 	t_player		player;
 	t_ray			ray;
@@ -123,15 +124,25 @@ typedef struct s_mlx
 void	parse_elements(t_map *map, int fd);
 void	parse_map(t_map *map, char *line, int fd);
 void	check_map(t_map *map);
+
 // utils //
 
-int	isplayer(char c);
+int		isplayer(char c);
 int		is_element(char *line);
 char	*ft_join(char *s1, char *s2);
 void	print_matrix(char **matrix);
+
 // errors //
 
 void	ft_error(char *err_message);
 void	parsing_error(t_map *map, char *err_message);
+void	mlx_error(t_mlx *data, char *err_mesage);
+
+
+// frees //
+
+void	free_matrix(char **matrix);
+void    free_map(t_map *map);
+void	free_mlx(t_mlx *data);
 
 #endif
