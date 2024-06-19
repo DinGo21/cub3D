@@ -1,7 +1,7 @@
-NO ./archivo.png
-SO ./archivo2.png
-WE ./archivo3.png
-EA ./archivo4.png
+NO ./sprites/Mona_Lisa.png
+SO ./sprites/Wheat_Field.png
+WE ./sprites/Impression_Sunrise.png
+EA ./sprites/Sunflowers.png
 
 F 220,100,0
 C 225,100,0

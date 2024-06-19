@@ -6,7 +6,7 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:09:58 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/17 16:11:44 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:00:32 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	free_mlx(t_mlx *data)
 
 	i = 0;
 	if (data->img != NULL)
+	{
 		mlx_delete_image(data->mlx, data->img);
+	}
+	mlx_close_window(data->mlx);
 	while (i < 4)
 	{
 		if (data->textures[i] != NULL)
@@ -42,7 +45,10 @@ void	free_mlx(t_mlx *data)
 		}
 		i++;
 	}
-	mlx_terminate(data->mlx);
+	if (data->mlx != NULL)
+	{
+		mlx_terminate(data->mlx);
+	}
 }
 
 void	free_map(t_map *map)
