@@ -6,7 +6,7 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:16:04 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/17 15:02:10 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:43:29 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,21 @@ typedef struct s_mlx
 	t_ray			ray;
 }	t_mlx;
 
+// init //
+
+void	init_data(t_mlx *data);
+void	init_player(t_player *player, t_map *map);
+
 // parsing //
 
 void	parse_elements(t_map *map, int fd);
 void	parse_map(t_map *map, char *line, int fd);
 void	check_map(t_map *map);
+
+// hooks //
+
+void	hooks(t_player *player, t_map *map, double y, double x);
+void	key_hooks(mlx_key_data_t keydata, void *param);
 
 // utils //
 

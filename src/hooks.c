@@ -6,7 +6,7 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 15:40:45 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/19 15:39:26 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:20:56 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	key_hooks(mlx_key_data_t keydata, void *param)
 	key_release(&keydata, data);
 }
 
-void	rotate_player(t_player *player, int f)
+static void	rotate_player(t_player *player, int f)
 {
 	if (f == 1)
 	{
@@ -67,7 +67,7 @@ void	rotate_player(t_player *player, int f)
 	}
 }
 
-void	move_player(t_player *player, t_map *map, double y, double x)
+static void	move_player(t_player *player, t_map *map, double y, double x)
 {
 	int grid_y;
 	int	grid_x;
@@ -87,7 +87,7 @@ void	move_player(t_player *player, t_map *map, double y, double x)
 	}
 }
 
-void	hooks(t_player *player, double y, double x)
+void	hooks(t_player *player, t_map *map, double y, double x)
 {
 	if (player->rot == 1)
 		rotate_player(player, 1);
@@ -113,4 +113,5 @@ void	hooks(t_player *player, double y, double x)
 		y = -cos(player->angle) * PLAYER_SPEED;
 		x = -sin(player->angle) * PLAYER_SPEED;
 	}
+	move_player(player, map, y, x);
 }
