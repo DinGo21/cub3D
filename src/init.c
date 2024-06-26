@@ -6,11 +6,29 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:25:19 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/20 11:35:02 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/24 12:18:36 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	load_textures(t_mlx *data, t_map *map)
+{
+	print_matrix(map->txtr);
+	data->textures[0] = mlx_load_png(map->txtr[0]);
+	if (!data->textures[0])
+		return (-1);
+	data->textures[1] = mlx_load_png(map->txtr[1]);
+	if (!data->textures[1])
+		return (-1);
+	data->textures[2] = mlx_load_png(map->txtr[2]);
+	if (!data->textures[2])
+		return (-1);
+	data->textures[3] = mlx_load_png(map->txtr[3]);
+	if (!data->textures[3])
+		return (-1);
+	return (0);
+}
 
 void	init_player(t_player *player, t_map *map)
 {

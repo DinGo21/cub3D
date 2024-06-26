@@ -6,29 +6,11 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 13:04:09 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/20 11:29:21 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:44:35 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	load_textures(t_mlx *data, t_map *map)
-{
-	print_matrix(map->txtr);
-	data->textures[NO] = mlx_load_png(map->txtr[NO]);
-	if (!data->textures[NO])
-		return (-1);
-	data->textures[SO] = mlx_load_png(map->txtr[SO]);
-	if (!data->textures[SO])
-		return (-1);
-	data->textures[WE] = mlx_load_png(map->txtr[WE]);
-	if (!data->textures[WE])
-		return (-1);
-	data->textures[EA] = mlx_load_png(map->txtr[EA]);
-	if (!data->textures[EA])
-		return (-1);
-	return (0);
-}
 
 static void	get_args(t_mlx *data, char *filename)
 {
@@ -45,7 +27,19 @@ static void	get_args(t_mlx *data, char *filename)
 	close(fd);
 	//parsing_error(&data->map, NULL);
 }
+/*
+void	loop(void *param)
+{
+	t_mlx *data;
 
+	data = param;
+	mlx_delete_image(data->mlx, data->img);
+	data->img = mlx_new_image(data->mlx, S_WIDTH, S_HEIGHT);
+	hooks(&data->player, &data->map, 0, 0);
+	//cast_rays(mlx);
+	mlx_image_to_window(data->mlx, data->img, 0, 0);
+}
+*/
 void	start_game(t_mlx *data)
 {
 	data->mlx = mlx_init(S_WIDTH, S_HEIGHT, "cuBit3D", true);
@@ -53,12 +47,13 @@ void	start_game(t_mlx *data)
 	{
 		parsing_error(&data->map, strerror(errno));
 	}
-	if (load_textures(data, &data->map) == -1)
-	{
-		mlx_error(data, "Problems while loading textures");
-	}
 	init_player(&data->player, &data->map);
-	//mlx_key_hook(data->mlx, &key_hooks, &data);
+	mlx_error(data, NULL);
+	// if (load_textures(data, &data->map) == -1)
+	// {
+	// 	mlx_error(data, "Problems while loading textures");
+	// }
+	// mlx_key_hook(data->mlx, &key_hooks, &data);
 	//mlx_loop_hook(data->mlx, &loop, &data);
 	//mlx_loop(data->mlx);
 }

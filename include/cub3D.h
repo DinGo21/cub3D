@@ -6,7 +6,7 @@
 /*   By: disantam <disantam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 12:16:04 by disantam          #+#    #+#             */
-/*   Updated: 2024/06/20 11:43:29 by disantam         ###   ########.fr       */
+/*   Updated: 2024/06/20 12:16:06 by disantam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_mlx
 
 // init //
 
+int		load_textures(t_mlx *data, t_map *map);
 void	init_data(t_mlx *data);
 void	init_player(t_player *player, t_map *map);
 
